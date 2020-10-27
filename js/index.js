@@ -22,20 +22,16 @@ window.onload = function headingFadeIn() {
 document.addEventListener("keydown", event => event.key === "d" ? swapMode() : 0);
 
 function colorChanges(element) {
-    if (mainHeader.style.backgroundColor == "#FFFFFF") {
-        element.addEventListener("mouseenter", function (event) {
-            element.style.color = "#FFFFFF";
-            element.style.backgroundColor = "#212529";
-            event.preventDefault();
-            event.stopPropagation();
-        });
-        element.addEventListener("mouseleave", function (event) {
-            element.style.color = "#212529";
-            element.style.backgroundColor = "#FFFFFF";
-            event.preventDefault();
-            event.stopPropagation();
-        });
-    }
+    element.addEventListener("mouseenter", function (event) {
+        element.style.color = mainHeader.style.backgroundColor;
+        element.style.backgroundColor = document.body.style.backgroundColor;
+        event.preventDefault();
+    });
+    element.addEventListener("mouseleave", function (event) {
+        element.style.color = document.body.style.backgroundColor;
+        element.style.backgroundColor = mainHeader.style.backgroundColor;
+        event.preventDefault();
+    });
 }
 
 function showText(element) {
@@ -51,19 +47,19 @@ function showText(element) {
 }
 
 function swapMode() {
-    if (document.body.style.backgroundColor != "#FFFFFF") {
-        document.body.style.backgroundColor = "#FFFFFF";
+    if (document.body.style.backgroundColor != "white") {
+        document.body.style.backgroundColor = "white";
         document.querySelector(".main-navigation").style.backgroundColor = "#212529";
         navLinks.forEach((link) => {
-            link.style.color = "#FFFFFF";
+            link.style.color = "white";
             link.style.backgroundColor = "#212529";
         });
     } else {
         document.body.style.backgroundColor = "#212529";
-        document.querySelector(".main-navigation").style.backgroundColor = "#FFFFFF";
+        document.querySelector(".main-navigation").style.backgroundColor = "white";
         navLinks.forEach((link) => {
             link.style.color = "#212529";
-            link.style.backgroundColor = "#FFFFFF";
+            link.style.backgroundColor = "white";
         });
     }
 }
