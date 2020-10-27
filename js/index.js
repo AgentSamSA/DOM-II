@@ -25,8 +25,8 @@ const busImg = document.querySelector(".intro img");
 siteImages.forEach((image) => {
     image.style.opacity = 0;
     fadeIn(image);
+    image.addEventListener("dblclick", () => image.classList.toggle("large"));
 });
-//busImg.addEventListener("dblclick", zoom());
 
 window.addEventListener("load", () => title.style.opacity = 1);
 
@@ -80,9 +80,4 @@ function fadeIn(element) {
         element.style.transition = "1s";
         element.style.opacity = 1;
     });
-}
-
-function zoom(element) {
-    let initialWidth = element.clientWidth;
-     
 }
