@@ -9,16 +9,27 @@ title.style.opacity = 0;
 title.style.transition = "2.5s";
 
 const subTitles = document.querySelectorAll("h2");
-subTitles.forEach((text) => text.style.opacity = 0);
-subTitles.forEach((text) => showText(text));
+subTitles.forEach((text) => {
+    text.style.opacity = 0;
+    showText(text);
+});
 
 const subSubTitles = document.querySelectorAll("h4");
-subSubTitles.forEach((text) => text.style.opacity = 0);
-subSubTitles.forEach((text) => showText(text));
+subSubTitles.forEach((text) => {
+    text.style.opacity = 0;
+    showText(text);
+});
 
-window.onload = function headingFadeIn() {
-    title.style.opacity = 1;
-}
+const siteImages = document.querySelectorAll("img");
+const busImg = document.querySelector(".intro img");
+siteImages.forEach((image) => {
+    image.style.opacity = 0;
+    fadeIn(image);
+});
+//busImg.addEventListener("dblclick", zoom());
+
+window.addEventListener("load", () => title.style.opacity = 1);
+
 document.addEventListener("keydown", event => event.key === "d" ? swapMode() : 0);
 
 function colorChanges(element) {
@@ -62,4 +73,16 @@ function swapMode() {
             link.style.backgroundColor = "white";
         });
     }
+}
+
+function fadeIn(element) {
+    element.addEventListener("load", () => {
+        element.style.transition = "1s";
+        element.style.opacity = 1;
+    });
+}
+
+function zoom(element) {
+    let initialWidth = element.clientWidth;
+     
 }
