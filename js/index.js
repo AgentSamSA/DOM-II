@@ -2,7 +2,13 @@
 const mainHeader = document.querySelector(".main-navigation");
 
 const navLinks = document.querySelectorAll(".nav-link");
-navLinks.forEach((link) => colorChanges(link));
+navLinks.forEach((link) => {
+    colorChanges(link);
+    link.addEventListener("click", (event) => {
+        link.style.color = "green";
+        event.stopPropagation();
+    });
+});
 
 const title = document.querySelector(".logo-heading");
 title.style.opacity = 0;
