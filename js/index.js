@@ -1,12 +1,15 @@
 // Your code goes here
 const mainHeader = document.querySelector(".main-navigation");
+mainHeader.addEventListener("click", confirm2);
+
+const nav = document.querySelector("nav");
+nav.addEventListener("click", confirm1);
 
 const navLinks = document.querySelectorAll(".nav-link");
 navLinks.forEach((link) => {
     colorChanges(link);
-    link.addEventListener("click", (event) => {
+    link.addEventListener("click", () => {
         link.style.color = "green";
-        event.stopPropagation();
     });
 });
 
@@ -46,6 +49,7 @@ function colorChanges(element) {
         element.style.color = mainHeader.style.backgroundColor;
         element.style.backgroundColor = document.body.style.backgroundColor;
         event.preventDefault();
+        event.stopPropagation();
     });
     element.addEventListener("mouseleave", function (event) {
         element.style.color = document.body.style.backgroundColor;
@@ -101,4 +105,15 @@ function goodbyeBtn() {
     } else {
         bottomBtns.forEach((btn) => btn.style.opacity = 1);
     }
+}
+
+function confirm1(event) {
+    confirm("Nav is clicked");
+    if (event.target === nav) {
+        event.stopPropagation();
+    }
+}
+
+function confirm2() {
+    confirm("Header is clicked");
 }
