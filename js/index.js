@@ -1,3 +1,7 @@
+const { CSSPlugin } = require("gsap");
+const { default: gsap } = require("gsap/gsap-core");
+gsap.registerPlugin(CSSPlugin);
+
 // Your code goes here
 const mainHeader = document.querySelector(".main-navigation");
 mainHeader.addEventListener("click", confirm2);
@@ -33,10 +37,12 @@ const siteImages = document.querySelectorAll("img");
 siteImages.forEach((image) => {
     image.style.opacity = 0;
     fadeIn(image);
+    rotatingImages(image);
     image.addEventListener("dblclick", () => image.classList.toggle("large"));
 });
 
 const bottomBtns = document.querySelectorAll(".btn");
+bottomBtns.forEach((btn) => btn.addEventListener("click", () => alert("You clicked the button!")));
 
 window.addEventListener("resize", goodbyeBtn);
 
@@ -58,14 +64,14 @@ function colorChanges(element) {
     });
 }
 
-function showText(element) {
-    element.addEventListener("mouseenter", function () {
-        element.style.transition = ".5s";
-        element.style.opacity = 1;
+function showText(textElement) {
+    textElement.addEventListener("mouseenter", function () {
+        textElement.style.transition = ".5s";
+        textElement.style.opacity = 1;
     });
-    element.addEventListener("mouseleave", function () {
+    textElement.addEventListener("mouseleave", function () {
         setTimeout(function () {
-            element.style.opacity = 0;
+            textElement.style.opacity = 0;
         }, 500);
     });
 }
@@ -116,4 +122,8 @@ function confirm1(event) {
 
 function confirm2() {
     confirm("Header is clicked");
+}
+
+function rotatingImages(imgElement) {
+    imgElement.addEventListener("mouseover", () => gsap.to(imgElement, { duration: 1.45, rotation: 1080 }));
 }
