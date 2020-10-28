@@ -21,12 +21,15 @@ subSubTitles.forEach((text) => {
 });
 
 const siteImages = document.querySelectorAll("img");
-const busImg = document.querySelector(".intro img");
 siteImages.forEach((image) => {
     image.style.opacity = 0;
     fadeIn(image);
     image.addEventListener("dblclick", () => image.classList.toggle("large"));
 });
+
+const bottomBtns = document.querySelectorAll(".btn");
+
+window.addEventListener("resize", goodbyeBtn);
 
 window.addEventListener("load", () => title.style.opacity = 1);
 
@@ -65,6 +68,8 @@ function swapMode() {
             link.style.color = "white";
             link.style.backgroundColor = "#212529";
         });
+        document.querySelector("footer").style.backgroundColor = "#44371F";
+        document.querySelector("footer p").style.color = "white";
     } else {
         document.body.style.backgroundColor = "#212529";
         document.querySelector(".main-navigation").style.backgroundColor = "white";
@@ -72,6 +77,8 @@ function swapMode() {
             link.style.color = "#212529";
             link.style.backgroundColor = "white";
         });
+        document.querySelector("footer").style.backgroundColor = "#FFEBCD";
+        document.querySelector("footer p").style.color = "#212529";
     }
 }
 
@@ -80,4 +87,12 @@ function fadeIn(element) {
         element.style.transition = "1s";
         element.style.opacity = 1;
     });
+}
+
+function goodbyeBtn() {
+    if (window.innerWidth <= 650) {
+        bottomBtns.forEach((btn) => btn.style.opacity = 0);
+    } else {
+        bottomBtns.forEach((btn) => btn.style.opacity = 1);
+    }
 }
